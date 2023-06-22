@@ -21,12 +21,11 @@ func main() {
 	kafkaMsgChan := make(chan *ckafka.Message)
 	configMap := &ckafka.ConfigMap{
 		"bootstrap.servers": "host.docker.internal:9094",
-		"group.id": "myGroup",
+		"group.id":          "myGroup",
 		"auto.offset.reset": "earliest",
-
 	}
-	producer :=kafka.NewKafkaProducer(configMap)
-	kakfa := kafka.NewConsumer(configMap, []string{"input"})
+	producer := kafka.NewKafkaProducer(configMap)
+	kafka := kafka.NewConsumer(configMap, []string{"input"})
 
 	go kafka.Consumer(kafkaMsgChan) // T2
 
