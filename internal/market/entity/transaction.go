@@ -22,6 +22,10 @@ func NewTransaction(sellingOrder *Order, buyingOrder *Order, shares int, price f
 		ID:           uuid.New().String(),
 		SellingOrder: sellingOrder,
 		BuyingOrder:  buyingOrder,
+		Shares:       shares,
+		Price:        price,
+		Total:        total,
+		DateTime:     time.Now(),
 	}
 }
 
@@ -45,6 +49,6 @@ func (t *Transaction) AddBuyOrderPendingShares(shares int) {
 	t.BuyingOrder.PendingShares += shares
 }
 
-func (t *Transaction) AddSellOrderPendingShares(shares int ) {
+func (t *Transaction) AddSellOrderPendingShares(shares int) {
 	t.SellingOrder.PendingShares += shares
 }
